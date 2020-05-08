@@ -2,7 +2,10 @@ import React from 'react';
 
 function App() {
   return (
-    <div><h1>Hello, React!</h1></div>
+    // ↓のhtmlのタグのような部分がJSX（JavaScriptXml）
+    // ここの部分はJavaScriptに変換されるが、変換後の素のJSを記述するより
+    // JSXを用いたほうがより出力イメージに近い形で記述できるのでJSXが用いられる。
+    <h1>Hello, React!!</h1>
   );
 }
 
