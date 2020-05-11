@@ -2,11 +2,16 @@ import React from 'react';
 
 function App() {
   return (
-    // ↓のhtmlのタグのような部分がJSX（JavaScriptXml）
-    // Reactを用いてhtmlを出力するための言語
-    // ここの部分はJavaScriptに変換されるが、変換後の素のJSを記述するより
-    // JSXを用いたほうがより出力イメージに近い形で記述できるのでJSXが用いられる。
-    <h1>Hello, React!!</h1>
+    // return内は一つのタグで囲わないといけない
+    // そうすると不必要なhtmlタグが出力されてしまう
+    // それを避けるためにreturn内を<React.Fragment></React.Fragment>で囲うと
+    // 不要なhtmlタグが出力されなくなる
+    // htmlのfor、classはJSX内ではそれぞれhtmlFor、classNameとする
+    <React.Fragment>
+      <label htmlFor="bar">bar</label>
+      <input id="bar" type="text" onClick={() => {console.log("Hello!")}} />
+    </React.Fragment>
+    
   );
 }
 
