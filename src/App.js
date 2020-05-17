@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// props
-// 親コンポーネントから子コンポーネントへデータを渡す際にpropsを使用する
+// prop-types
+// プロパティの型チェック
 
 const App = () => {
   const profiles = [
     { name: "Taro", age: 10},
     { name: "Hanako", age: 5},
-    { name: "NoName" }
+    { name: "NoName", age: 3}
   ]
   return (
     <div>
@@ -26,10 +27,12 @@ const User = (props) => {
   return <div>Hi!, I am {props.name}, and {props.age} years old! </div>
 }
 
-// デフォルトprops
-// 個別のデータを渡さない場合のデフォルト値を定めておくことができる
-User.defaultProps = {
-  age: 1
+User.propTypes = {
+  // 「コンポーネント名.データ型」と記述することでそのpropsに対するデータ型を指定できる
+  // ここで指定されているデータ型と異なるデータが入力されているとブラウザのConsoleでWarningが表示される
+  // また、必ずデータが必要なpropsに対しては「.isRequired」で入力されているかどうかの確認となる
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
 }
 
 export default App;
