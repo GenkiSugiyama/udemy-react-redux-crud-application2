@@ -1,38 +1,38 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-// prop-types
-// プロパティの型チェック
+// state
+// コンポーネント内部の状態のこと
+// コンポーネント内部でのみ使用される
+// 変更可能な値
 
-const App = () => {
-  const profiles = [
-    { name: "Taro", age: 10},
-    { name: "Hanako", age: 5},
-    { name: "NoName", age: 3}
-  ]
-  return (
-    <div>
-      {
-        profiles.map((profile, index) => {
-          return <User name={profile.name} age={profile.age} key={index} />
-        })
-      }
-      {/* <User name={"Taro"} age={10} /> User コンポーネントに対してname属性「Taro」を渡している */}
-      {/* <User name={"Hanako"} age={5} /> */}
-    </div>
-  )
-}
+const App = () => (<Counter></Counter>)
 
-const User = (props) => {
-  return <div>Hi!, I am {props.name}, and {props.age} years old! </div>
-}
+class Counter extends Component {
+  // constructor: クラス初期化時に呼び出されるメソッド
+  constructor(props) {
+    super(props)
+    this.state = { count: 0 }
+  }
 
-User.propTypes = {
-  // 「コンポーネント名.データ型」と記述することでそのpropsに対するデータ型を指定できる
-  // ここで指定されているデータ型と異なるデータが入力されているとブラウザのConsoleでWarningが表示される
-  // また、必ずデータが必要なpropsに対しては「.isRequired」で入力されているかどうかの確認となる
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired
+  hundlePlusButton = () => {
+    // stateをいじる場合は必ずsetState関数を使用する 「this.state =」のように状態を直接いじってはいけない
+    // setStateが実行されるとrenderも実行される
+    this.setState({ count: this.state.count + 1 })
+  }
+
+  hundleMinusButton = () => {
+    this.setState({ count: this.state.count - 1 })
+  }
+
+  render() {
+    return(
+      <React.Fragment>
+        <div>counter: {this.state.count}</div>
+        <button onClick={this.hundlePlusButton}>+1</button>
+        <button onClick={this.hundleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
